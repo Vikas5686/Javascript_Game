@@ -71,11 +71,11 @@ class Particle {
         this.radious = radious;
         this.color = color;
         this.velecity = velecity;
-        this.alpha = 1
+        // this.alpha = 1
     }
     draw() {
         c.save()
-        c.globalAlpha = .9
+        // c.globalAlpha = .9
         c.beginPath()
         c.arc(this.x, this.y, this.radious, 0, Math.PI * 2, false)
         c.fillStyle = this.color
@@ -155,8 +155,8 @@ function animate() {
                 for (let i = 0; i < e.radious*2; i++) {
                     particles.push(
                         new Particle(p.x, p.y, 3, e.color, { 
-                            x: Math.random() - 0.5*(Math.random()*18), 
-                            y: Math.random() - 0.5*(Math.random()*12)
+                            x: Math.random() - 0.5*(Math.random()*8), 
+                            y: Math.random() - 0.5*(Math.random()*8)
                         })
                     )
                 }
