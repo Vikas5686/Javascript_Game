@@ -75,9 +75,9 @@ const Enemies = []
 
 function spawEnemy(){
     setInterval(()=>{
-       const x=Math.random()*convas.width
-       const y=Math.random()*convas.height
-       const radious=Math.random()*(30-8)+10;
+        const radious=Math.random()*(30-8)+10;
+       const x=Math.random()<0.5?0-radious:convas.width+radious
+       const y=Math.random()<0.5?0-radious:convas.height+radious
        const color='yellow'
        const angle = Math.atan2(
        convas.height / 2-y,
@@ -123,4 +123,4 @@ addEventListener('click', (event) => {
   
 })
 animate();
-// spawEnemy();
+spawEnemy();
