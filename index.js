@@ -63,6 +63,32 @@ class Enemy {
     }
 }
 
+
+class Particle {
+    constructor(x, y, radious, color, velecity) {
+        this.x = x;
+        this.y = y;
+        this.radious = radious;
+        this.color = color;
+        this.velecity = velecity;
+        this.alpha = 1
+    }
+    draw() {
+        c.save()
+        c.globalAlpha = 0.1
+        c.beginPath()
+        c.arc(this.x, this.y, this.radious, 0, Math.PI * 2, false)
+        c.fillStyle = this.color
+        c.fill()
+        c.restore()
+    }
+    update() {
+        this.draw()
+        this.x = this.x + this.velecity.x*5
+        this.y = this.y + this.velecity.y*5
+        this.alpha -= 0.01;
+    }
+}
 const x = convas.width / 2
 const y = convas.height / 2
 
@@ -73,6 +99,7 @@ const player = new Player(x, y, 30, 'white')
 
 const projectiles = []
 const Enemies = []
+const particles = []
 
 function spawEnemy() {
     setInterval(() => {
@@ -101,6 +128,14 @@ function animate() {
     c.fillStyle = 'rgba(0,0,0,0.1)'
     c.fillRect(0, 0, convas.width, convas.height)
     player.draw()
+    particles.forEach((particle, index) => {
+        if (particle.alpha <= 0) {
+            particles.splice(index, 1)
+        } else {
+
+            particle.update()
+        }
+    })
     projectiles.forEach((x) => {
         x.update()
     })
@@ -116,9 +151,16 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
 
             if (dist - e.radious - p.radious < 1) {
+
+                for (let i = 0; i < 8; i++) {
+                    particles.push(
+                        new Particle(p.x, p.y, 3, e.color, { x: Math.random() - .5, y: Math.random() - .5 })
+                    )
+                }
+
                 if (e.radious - 10 > 10) {
-                    gsap.to(e,{
-                        radious:e.radious-20
+                    gsap.to(e, {
+                        radious: e.radious - 20
                     })
                     setTimeout(() => {
                         projectiles.splice(pindex, 1)
