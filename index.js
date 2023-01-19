@@ -102,8 +102,18 @@ function animate() {
         x.update()
     })
     
-    Enemies.forEach((x) => {
-        x.update()
+    Enemies.forEach((e,eindex) => {
+        e.update()
+        projectiles.forEach((p,pindex) => {
+            const dist=Math.hypot(p.x-e.x,p.y-e.y)
+            if (dist-e.radious-p.radious<1) {
+                setTimeout(()=>{
+                    Enemies.splice(eindex,1)
+                projectiles.splice(pindex,1)
+                },0)
+                
+            }
+        })
     })
    
 }
