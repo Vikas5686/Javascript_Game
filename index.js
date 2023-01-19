@@ -154,7 +154,7 @@ function animate() {
 
                 for (let i = 0; i < e.radious*2; i++) {
                     particles.push(
-                        new Particle(p.x, p.y, Math.random()*3, e.color, { 
+                        new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
                             x: Math.random() - 0.5*(Math.random()*8), 
                             y: Math.random() - 0.5*(Math.random()*8)
                         })
