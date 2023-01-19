@@ -1,6 +1,7 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
 const c = convas.getContext('2d')
+console.log(gsap)
 
 convas.width = window.screen.availWidth
 convas.height = window.screen.availHeight
@@ -73,49 +74,67 @@ const player = new Player(x, y, 30, 'white')
 const projectiles = []
 const Enemies = []
 
-function spawEnemy(){
-    setInterval(()=>{
-        const radious=Math.random()*(30-8)+10;
-       const x=Math.random()<0.5?0-radious:convas.width+radious
-       const y=Math.random()<0.5?0-radious:convas.height+radious
-       const color='yellow'
-       const angle = Math.atan2(
-       convas.height / 2-y,
-         convas.width / 2-x
-    )
-    const velocity={
-        x:Math.cos(angle),
-        y:Math.sin(angle)
-    }
-       Enemies.push(
-        new Enemy(x,y,radious,color,velocity)
-       )
-    //    console.log(Enemies)
-    },1000)
+function spawEnemy() {
+    setInterval(() => {
+        const radious = Math.random() * (30 - 8) + 10;
+        const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
+        const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
+        const color = `hsl(${Math.random() * 360},80%,50%)`
+        const angle = Math.atan2(
+            convas.height / 2 - y,
+            convas.width / 2 - x
+        )
+        const velocity = {
+            x: Math.cos(angle),
+            y: Math.sin(angle)
+        }
+        Enemies.push(
+            new Enemy(x, y, radious, color, velocity)
+        )
+        //    console.log(Enemies)
+    }, 1000)
 }
 
+let animatedId
 function animate() {
-    requestAnimationFrame(animate)
-    c.clearRect(0,0,convas.width,convas.height)
+    animatedId = requestAnimationFrame(animate)
+    c.fillStyle = 'rgba(0,0,0,0.1)'
+    c.fillRect(0, 0, convas.width, convas.height)
     player.draw()
     projectiles.forEach((x) => {
         x.update()
     })
-    
-    Enemies.forEach((e,eindex) => {
+
+    Enemies.forEach((e, eindex) => {
         e.update()
-        projectiles.forEach((p,pindex) => {
-            const dist=Math.hypot(p.x-e.x,p.y-e.y)
-            if (dist-e.radious-p.radious<1) {
-                setTimeout(()=>{
-                    Enemies.splice(eindex,1)
-                projectiles.splice(pindex,1)
-                },0)
-                
+        const dist = Math.hypot(player.x - e.x, player.y - e.y)
+        if (dist - e.radious - player.radious < 1) {
+            cancelAnimationFrame(animatedId)
+            // console.log("this")
+        }
+        projectiles.forEach((p, pindex) => {
+            const dist = Math.hypot(p.x - e.x, p.y - e.y)
+
+            if (dist - e.radious - p.radious < 1) {
+                if (e.radious - 10 > 10) {
+                    gsap.to(e,{
+                        radious:e.radious-20
+                    })
+                    setTimeout(() => {
+                        projectiles.splice(pindex, 1)
+                    }, 0)
+                }
+                else {
+                    setTimeout(() => {
+                        Enemies.splice(eindex, 1)
+                        projectiles.splice(pindex, 1)
+                    }, 0)
+                }
+
             }
         })
     })
-   
+
 }
 
 addEventListener('click', (event) => {
@@ -123,14 +142,14 @@ addEventListener('click', (event) => {
         event.clientY - convas.height / 2,
         event.clientX - convas.width / 2
     )
-    const velocity={
-        x:Math.cos(angle),
-        y:Math.sin(angle)
+    const velocity = {
+        x: Math.cos(angle) * 6,
+        y: Math.sin(angle) * 6
     }
     projectiles.push(
-        new Projectile(convas.width/2,convas.height/2,5,'red',velocity)
+        new Projectile(convas.width / 2, convas.height / 2, 5, 'white', velocity)
     )
-  
+
 })
 animate();
 spawEnemy();
