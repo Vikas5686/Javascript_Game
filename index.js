@@ -228,8 +228,8 @@ addEventListener('click', (event) => {
         event.clientX - convas.width / 2
     )
     const velocity = {
-        x: Math.cos(angle) * 15,
-        y: Math.sin(angle) * 15
+        x: Math.cos(angle) * 9,
+        y: Math.sin(angle) * 9
     }
     projectiles.push(
         new Projectile(convas.width / 2, convas.height / 2, 5, 'white', velocity)
