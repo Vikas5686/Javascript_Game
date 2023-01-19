@@ -2,6 +2,11 @@ const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
 const c = convas.getContext('2d')
 console.log(gsap)
+function play() {
+    var audio = new Audio(
+'./CymbalCrash CRT043807.mp3');
+    audio.play();
+}
 
 convas.width = window.screen.availWidth
 convas.height = window.screen.availHeight
@@ -189,19 +194,20 @@ function animate() {
         }
         projectiles.forEach((p, pindex) => {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
-
+            
             if (dist - e.radious - p.radious < 1) {
-
+                
                 for (let i = 0; i < e.radious*2; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
                             x: Math.random() - 0.5*(Math.random()*8), 
                             y: Math.random() - 0.5*(Math.random()*8)
                         })
-                    )
-                }
-
-                if (e.radious - 10 > 10) {
+                        )
+                    }
+                    
+                    play()
+                    if (e.radious - 10 > 10) {
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
