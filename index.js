@@ -63,7 +63,7 @@ class Enemy {
     }
 }
 
-
+const friction=.99
 class Particle {
     constructor(x, y, radious, color, velecity) {
         this.x = x;
@@ -71,11 +71,11 @@ class Particle {
         this.radious = radious;
         this.color = color;
         this.velecity = velecity;
-        // this.alpha = 1
+        this.alpha = 1
     }
     draw() {
         c.save()
-        // c.globalAlpha = .9
+        c.globalAlpha = 1
         c.beginPath()
         c.arc(this.x, this.y, this.radious, 0, Math.PI * 2, false)
         c.fillStyle = this.color
@@ -84,9 +84,11 @@ class Particle {
     }
     update() {
         this.draw()
+        this.velecity.x*=friction
+        this.velecity.y*=friction
         this.x = this.x + this.velecity.x
         this.y = this.y + this.velecity.y
-        this.alpha -= 0.01;
+        this.alpha -= 0.0028;
     }
 }
 const x = convas.width / 2
