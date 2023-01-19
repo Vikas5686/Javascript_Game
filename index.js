@@ -105,7 +105,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * 30 + 30;
+        const radious = Math.random() * 30+15 +Math.random()* 30+15;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
@@ -190,8 +190,8 @@ addEventListener('click', (event) => {
         event.clientX - convas.width / 2
     )
     const velocity = {
-        x: Math.cos(angle) * 6,
-        y: Math.sin(angle) * 6
+        x: Math.cos(angle) * 15,
+        y: Math.sin(angle) * 15
     }
     projectiles.push(
         new Projectile(convas.width / 2, convas.height / 2, 5, 'white', velocity)
