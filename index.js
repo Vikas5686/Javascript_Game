@@ -75,7 +75,7 @@ class Particle {
     }
     draw() {
         c.save()
-        c.globalAlpha = 0.1
+        c.globalAlpha = .9
         c.beginPath()
         c.arc(this.x, this.y, this.radious, 0, Math.PI * 2, false)
         c.fillStyle = this.color
@@ -84,8 +84,8 @@ class Particle {
     }
     update() {
         this.draw()
-        this.x = this.x + this.velecity.x*5
-        this.y = this.y + this.velecity.y*5
+        this.x = this.x + this.velecity.x
+        this.y = this.y + this.velecity.y
         this.alpha -= 0.01;
     }
 }
@@ -106,7 +106,7 @@ function spawEnemy() {
         const radious = Math.random() * (30 - 8) + 10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
-        const color = `hsl(${Math.random() * 360},80%,50%)`
+        const color = `hsl(${Math.random() * 360},100%,50%)`
         const angle = Math.atan2(
             convas.height / 2 - y,
             convas.width / 2 - x
@@ -119,7 +119,7 @@ function spawEnemy() {
             new Enemy(x, y, radious, color, velocity)
         )
         //    console.log(Enemies)
-    }, 1000)
+    }, 2000)
 }
 
 let animatedId
@@ -152,15 +152,18 @@ function animate() {
 
             if (dist - e.radious - p.radious < 1) {
 
-                for (let i = 0; i < 8; i++) {
+                for (let i = 0; i < e.radious*2; i++) {
                     particles.push(
-                        new Particle(p.x, p.y, 3, e.color, { x: Math.random() - .5, y: Math.random() - .5 })
+                        new Particle(p.x, p.y, 3, e.color, { 
+                            x: Math.random() - 0.5*(Math.random()*18), 
+                            y: Math.random() - 0.5*(Math.random()*12)
+                        })
                     )
                 }
 
                 if (e.radious - 10 > 10) {
                     gsap.to(e, {
-                        radious: e.radious - 20
+                        radious: e.radious - 10
                     })
                     setTimeout(() => {
                         projectiles.splice(pindex, 1)
