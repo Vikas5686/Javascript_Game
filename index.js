@@ -109,7 +109,7 @@ const x = convas.width / 2
 const y = convas.height / 2
 
 const player = new Player(x, y, 30, 'white')
-const defendYellow = new DefendYellow(x, y, 35, 'transparent')
+const defendYellow = new DefendYellow(x, y, 40, 'transparent')
 
 
 
@@ -120,7 +120,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * 30+16 ;
+        const radious = Math.random() * 30+10 ;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
@@ -192,7 +192,7 @@ function animate() {
 
             if (dist - e.radious - p.radious < 1) {
 
-                for (let i = 0; i < e.radious*2+5; i++) {
+                for (let i = 0; i < e.radious*2; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
                             x: Math.random() - 0.5*(Math.random()*8), 
