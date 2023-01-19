@@ -105,7 +105,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * (30 - 8) + 10;
+        const radious = Math.random() * 30 + 30;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
