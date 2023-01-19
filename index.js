@@ -20,6 +20,20 @@ class Player {
         c.fill()
     }
 }
+class DefendYellow {
+    constructor(x, y, radious, color) {
+        this.x = x;
+        this.y = y;
+        this.radious = radious;
+        this.color = color;
+    }
+    draw() {
+        c.beginPath()
+        c.arc(this.x, this.y, this.radious, 0, Math.PI * 2, false)
+        c.fillStyle = this.color
+        c.fill()
+    }
+}
 
 class Projectile {
     constructor(x, y, radious, color, velecity) {
@@ -95,6 +109,7 @@ const x = convas.width / 2
 const y = convas.height / 2
 
 const player = new Player(x, y, 30, 'white')
+const defendYellow = new DefendYellow(x, y, 35, 'transparent')
 
 
 
@@ -105,7 +120,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * 30+15 +Math.random()* 30+15;
+        const radious = Math.random() * 30+10 +Math.random()* 30+10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
@@ -130,6 +145,7 @@ function animate() {
     c.fillStyle = 'rgba(0,0,0,0.1)'
     c.fillRect(0, 0, convas.width, convas.height)
     player.draw()
+    defendYellow.draw()
     particles.forEach((particle, index) => {
         if (particle.alpha <= 0) {
             particles.splice(index, 1)
@@ -149,12 +165,34 @@ function animate() {
             cancelAnimationFrame(animatedId)
             // console.log("this")
         }
+        const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
+        if (dist2 - e.radious - defendYellow.radious < 1) {
+            for (let i = 0; i < e.radious*2; i++) {
+                particles.push(
+                    new Particle(defendYellow.x, defendYellow.y, Math.random()*2.5, e.color, { 
+                        x: Math.random() - 0.5*(Math.random()*8), 
+                        y: Math.random() - 0.5*(Math.random()*8)
+                    })
+                )
+            }
+
+            if (e.radious - 10 > 10) {
+                gsap.to(e, {
+                    radious: e.radious - 10
+                })
+            }
+            else {
+                setTimeout(() => {
+                    Enemies.splice(eindex, 1)
+                }, 0)
+            }
+        }
         projectiles.forEach((p, pindex) => {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
 
             if (dist - e.radious - p.radious < 1) {
 
-                for (let i = 0; i < e.radious*2; i++) {
+                for (let i = 0; i < e.radious*2+5; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
                             x: Math.random() - 0.5*(Math.random()*8), 
