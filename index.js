@@ -120,7 +120,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * 30+10 +Math.random()* 30+10;
+        const radious = Math.random() * 30+16 ;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
@@ -169,7 +169,7 @@ function animate() {
         if (dist2 - e.radious - defendYellow.radious < 1) {
             for (let i = 0; i < e.radious*2; i++) {
                 particles.push(
-                    new Particle(defendYellow.x, defendYellow.y, Math.random()*2.5, e.color, { 
+                    new Particle(defendYellow.x, defendYellow.y, Math.random()*2, e.color, { 
                         x: Math.random() - 0.5*(Math.random()*8), 
                         y: Math.random() - 0.5*(Math.random()*8)
                     })
