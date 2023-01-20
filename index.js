@@ -209,6 +209,7 @@ function animate() {
             if (dist - e.radious - p.radious < 1) {
                 
                 for (let i = 0; i < e.radious*2; i++) {
+                    
                     particles.push(
                         new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
                             x: Math.random() - 0.5*(Math.random()*8), 
