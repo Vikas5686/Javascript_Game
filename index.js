@@ -1,5 +1,8 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
+const scrore =document.querySelector('#Score')
+console.log(scrore.innerHTML=10)
+
 const c = convas.getContext('2d')
 console.log(gsap)
 function play() {
@@ -81,7 +84,7 @@ class Enemy {
         this.y = this.y + this.velecity.y
     }
 }
-
+const Scoring=0;
 const friction=.99
 class Particle {
     constructor(x, y, radious, color, velecity) {
@@ -147,7 +150,7 @@ function spawEnemy() {
 let animatedId
 function animate() {
     animatedId = requestAnimationFrame(animate)
-    c.fillStyle = 'rgba(0,0,0,0.1)'
+    c.fillStyle = 'rgba(0,0,0,0.04)'
     c.fillRect(0, 0, convas.width, convas.height)
     player.draw()
     defendYellow.draw()
@@ -165,6 +168,7 @@ function animate() {
 
     Enemies.forEach((e, eindex) => {
         e.update()
+        // scrore.innerHTML=10
         const dist = Math.hypot(player.x - e.x, player.y - e.y)
         if (dist - e.radious - player.radious < 1) {
             cancelAnimationFrame(animatedId)
@@ -204,8 +208,9 @@ function animate() {
                             y: Math.random() - 0.5*(Math.random()*8)
                         })
                         )
+                 
                     }
-                    
+                   
                     play()
                     if (e.radious - 10 > 10) {
                     gsap.to(e, {
@@ -242,5 +247,6 @@ addEventListener('click', (event) => {
     )
 
 })
+
 animate();
 spawEnemy();
