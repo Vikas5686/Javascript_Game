@@ -120,8 +120,8 @@ class Particle {
 const x = convas.width / 2
 const y = convas.height / 2
 
-const player = new Player(x, y, 30, 'white')
-const defendYellow = new DefendYellow(x, y, 40, 'transparent')
+const player = new Player(x, y, 10, 'white')
+const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 
 
 
