@@ -207,17 +207,18 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
             
             if (dist - e.radious - p.radious < 1) {
-                
+                let color=`hsl(${Math.random() * 360},100%,50%)`
                 for (let i = 0; i < e.radious*2; i++) {
                     
                     particles.push(
-                        new Particle(p.x, p.y, Math.random()*2.5, e.color, { 
+                        new Particle(p.x, p.y, Math.random()*2.5,color , { 
                             x: Math.random() - 0.5*(Math.random()*8), 
                             y: Math.random() - 0.5*(Math.random()*8)
                         })
                         )
                  
                     }
+                    
      
                     play2()
                     // sc+=50
@@ -255,7 +256,7 @@ addEventListener('click', (event) => {
         y: Math.sin(angle) * 9
     }
     projectiles.push(
-        new Projectile(convas.width / 2, convas.height / 2, 5, 'white', velocity)
+        new Projectile(convas.width / 2, convas.height / 2, 5, `hsl(${Math.random() * 360},100%,50%)`, velocity)
     )
 
 })
