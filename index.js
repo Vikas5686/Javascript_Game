@@ -1,13 +1,17 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
 const scrore =document.querySelector('#Score')
-console.log(scrore.innerHTML=10)
+
 
 const c = convas.getContext('2d')
-console.log(gsap)
 function play() {
     var audio = new Audio(
 './CymbalCrash CRT043807.mp3');
+    audio.play();
+}
+function play2() {
+    var audio = new Audio(
+'./WoodCrashesDistant FS022705.mp3');
     audio.play();
 }
 
@@ -148,6 +152,7 @@ function spawEnemy() {
 }
 
 let animatedId
+let sc=0
 function animate() {
     animatedId = requestAnimationFrame(animate)
     c.fillStyle = 'rgba(0,0,0,0.04)'
@@ -176,6 +181,7 @@ function animate() {
         }
         const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
         if (dist2 - e.radious - defendYellow.radious < 1) {
+            play2()
             for (let i = 0; i < e.radious*2; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random()*2, e.color, { 
@@ -186,6 +192,7 @@ function animate() {
             }
 
             if (e.radious - 10 > 10) {
+               
                 gsap.to(e, {
                     radious: e.radious - 10
                 })
@@ -211,8 +218,12 @@ function animate() {
                  
                     }
                    
-                    play()
+                    play2()
+                    sc+=50
+                        scrore.innerHTML=sc
                     if (e.radious - 10 > 10) {
+                         sc+=100
+                        scrore.innerHTML=sc
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
