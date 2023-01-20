@@ -217,7 +217,7 @@ function animate() {
                         )
                  
                     }
-                   
+     
                     play2()
                     sc+=50
                         scrore.innerHTML=sc
