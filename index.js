@@ -1,6 +1,6 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
-const scrore =document.querySelector('#Score')
+// const scrore =document.querySelector('#Score')
 
 
 const c = convas.getContext('2d')
@@ -220,11 +220,11 @@ function animate() {
                     }
      
                     play2()
-                    sc+=50
-                        scrore.innerHTML=sc
+                    // sc+=50
+                    //     scrore.innerHTML=sc
                     if (e.radious - 10 > 10) {
-                         sc+=100
-                        scrore.innerHTML=sc
+                        //  sc+=100
+                        // scrore.innerHTML=sc
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
