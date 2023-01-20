@@ -148,7 +148,7 @@ function spawEnemy() {
             new Enemy(x, y, radious, color, velocity)
         )
         //    console.log(Enemies)
-    }, 2000)
+    }, 1500)
 }
 
 let animatedId
