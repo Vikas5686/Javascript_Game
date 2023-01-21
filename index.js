@@ -6,12 +6,12 @@ const body = document.querySelector('body')
 const c = convas.getContext('2d')
 function play() {
     var audio = new Audio(
-'./CymbalCrash CRT043807.mp3');
+        './CymbalCrash CRT043807.mp3');
     audio.play();
 }
 function play2() {
     var audio = new Audio(
-'./WoodCrashesDistant FS022705.mp3');
+        './WoodCrashesDistant FS022705.mp3');
     audio.play();
 }
 
@@ -88,8 +88,8 @@ class Enemy {
         this.y = this.y + this.velecity.y
     }
 }
-const Scoring=0;
-const friction=.99
+const Scoring = 0;
+const friction = .99
 class Particle {
     constructor(x, y, radious, color, velecity) {
         this.x = x;
@@ -110,8 +110,8 @@ class Particle {
     }
     update() {
         this.draw()
-        this.velecity.x*=friction
-        this.velecity.y*=friction
+        this.velecity.x *= friction
+        this.velecity.y *= friction
         this.x = this.x + this.velecity.x
         this.y = this.y + this.velecity.y
         this.alpha -= 0.0028;
@@ -132,7 +132,7 @@ const particles = []
 
 function spawEnemy() {
     setInterval(() => {
-        const radious = Math.random() * 30+10 ;
+        const radious = Math.random() * 30 + 10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
         const color = `hsl(${Math.random() * 360},100%,50%)`
@@ -152,7 +152,8 @@ function spawEnemy() {
 }
 
 let animatedId
-let sc=0
+let sc = 0
+
 function animate() {
     animatedId = requestAnimationFrame(animate)
     c.fillStyle = 'rgba(0,0,0,0.04)'
@@ -182,17 +183,17 @@ function animate() {
         const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
-            for (let i = 0; i < e.radious*2; i++) {
+            for (let i = 0; i < e.radious * 2; i++) {
                 particles.push(
-                    new Particle(defendYellow.x, defendYellow.y, Math.random()*2, e.color, { 
-                        x: Math.random() - 0.5*(Math.random()*8), 
-                        y: Math.random() - 0.5*(Math.random()*8)
+                    new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
+                        x: Math.random() - 0.5 * (Math.random() * 8),
+                        y: Math.random() - 0.5 * (Math.random() * 8)
                     })
                 )
             }
 
             if (e.radious - 10 > 10) {
-               
+
                 gsap.to(e, {
                     radious: e.radious - 10
                 })
@@ -205,27 +206,33 @@ function animate() {
         }
         projectiles.forEach((p, pindex) => {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
-            
+
             if (dist - e.radious - p.radious < 1) {
-                let color=`hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious*2; i++) {
-                    
+                let color = `hsl(${Math.random() * 360},100%,50%)`
+                for (let i = 0; i < e.radious/2; i++) {
                     particles.push(
-                        new Particle(p.x, p.y, Math.random()*2.5,color , { 
-                            x: Math.random() - 0.5*(Math.random()*8), 
-                            y: Math.random() - 0.5*(Math.random()*8)
+                        new Particle(p.x, p.y, Math.random() * 2, e.color, {
+                            x: Math.random() - 0.5 * (Math.random() * 8),
+                            y: Math.random() - 0.5 * (Math.random() * 8)
                         })
-                        )
-                 
-                    }
-                    
-     
-                    play2()
-                    // sc+=50
-                    //     scrore.innerHTML=sc
-                    if (e.radious - 10 > 10) {
-                        //  sc+=100
-                        // scrore.innerHTML=sc
+                    )
+                }
+                for (let i = 0; i < e.radious/2; i++) {
+
+                    particles.push(
+                        new Particle(p.x, p.y, Math.random() * 2, p.color, {
+                            x: Math.random() - 0.5 * (Math.random() * 8),
+                            y: Math.random() - 0.5 * (Math.random() * 8)
+                        })
+                    )
+                }
+
+                play2()
+                // sc+=50
+                //     scrore.innerHTML=sc
+                if (e.radious - 10 > 10) {
+                    //  sc+=100
+                    // scrore.innerHTML=sc
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
