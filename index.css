@@ -6,12 +6,17 @@
     height: 100vh;
     width: 100%;
 }
-.scoring{
+.score{
     width: fit-content;
-    height: fit-content;
-    background: white;
+    height: 100px;
+    background-color: transparent;
+    color: white;
     position: fixed;
+    top: 0;
+    left: 0;
+    user-select: none;
 }
-.scoring1{
+#Score{
     height: fit-content;
+    background-color: transparent;
 }

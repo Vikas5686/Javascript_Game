@@ -1,13 +1,10 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
-
-
+const score=document.querySelector('.score1')
 const c = convas.getContext('2d')
-function play() {
-    var audio = new Audio(
-        './CymbalCrash CRT043807.mp3');
-    audio.play();
-}
+let sc=100
+score.innerHTML=sc
+
 function play2() {
     var audio = new Audio(
         './WoodCrashesDistant FS022705.mp3');
@@ -124,11 +121,12 @@ const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 
 
 
-
+//
 const projectiles = []
 const Enemies = []
 const particles = []
 
+//
 function spawEnemy() {
     setInterval(() => {
         const radious = Math.random() * 30 + 10;
@@ -146,12 +144,11 @@ function spawEnemy() {
         Enemies.push(
             new Enemy(x, y, radious, color, velocity)
         )
-    }, 3000)
+    }, 1500)
 }
 
 let animatedId
-let sc = 0
-
+//
 function animate() {
     animatedId = requestAnimationFrame(animate)
     c.fillStyle = 'rgba(0,0,0,0.04)'
@@ -162,7 +159,6 @@ function animate() {
         if (particle.alpha <= 0) {
             particles.splice(index, 1)
         } else {
-
             particle.update()
         }
     })
@@ -172,15 +168,15 @@ function animate() {
 
     Enemies.forEach((e, eindex) => {
         e.update()
-        // scrore.innerHTML=10
         const dist = Math.hypot(player.x - e.x, player.y - e.y)
         if (dist - e.radious - player.radious < 1) {
             cancelAnimationFrame(animatedId)
-            // console.log("this")
         }
         const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
+            sc=sc+10;
+            score.innerHTML=sc
             for (let i = 0; i < e.radious * 2; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
@@ -202,12 +198,12 @@ function animate() {
                 }, 0)
             }
         }
+        //
         projectiles.forEach((p, pindex) => {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
-
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious; i++) {
+                for (let i = 0; i < e.radious+5; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, e.color, {
                             x: Math.random() - 0.5 * (Math.random() * 8),
@@ -215,7 +211,7 @@ function animate() {
                         })
                     )
                 }
-                for (let i = 0; i < e.radious/2; i++) {
+                for (let i = 0; i < (e.radious / 2); i++) {
 
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, p.color, {
@@ -226,11 +222,9 @@ function animate() {
                 }
 
                 play2()
-                // sc+=50
-                //     scrore.innerHTML=sc
+                sc=sc+100;
+                score.innerHTML=sc
                 if (e.radious - 10 > 10) {
-                    //  sc+=100
-                    // scrore.innerHTML=sc
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
