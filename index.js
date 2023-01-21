@@ -175,8 +175,7 @@ function animate() {
         const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
-            sc=sc+10;
-            score.innerHTML=sc
+            
             for (let i = 0; i < e.radious * 2; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
@@ -187,7 +186,8 @@ function animate() {
             }
 
             if (e.radious - 10 > 10) {
-
+                sc=sc+10;
+            score.innerHTML=sc
                 gsap.to(e, {
                     radious: e.radious - 10
                 })
@@ -222,9 +222,10 @@ function animate() {
                 }
 
                 play2()
-                sc=sc+100;
-                score.innerHTML=sc
+           
                 if (e.radious - 10 > 10) {
+                    sc=sc+100;
+                    score.innerHTML=sc
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
