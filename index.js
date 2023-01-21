@@ -1,6 +1,5 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
-// const scrore =document.querySelector('#Score')
 
 
 const c = convas.getContext('2d')
@@ -147,8 +146,7 @@ function spawEnemy() {
         Enemies.push(
             new Enemy(x, y, radious, color, velocity)
         )
-        //    console.log(Enemies)
-    }, 1500)
+    }, 3000)
 }
 
 let animatedId
