@@ -3,7 +3,7 @@ const body = document.querySelector('body')
 const score = document.querySelector('.score1')
 const c = convas.getContext('2d')
 
-let notes = localStorage.getItem('notes')
+let notes = localStorage.getItem('Scorevs5686')
 if(notes==null){
 localStorage.setItem('notes', 10);
 }
@@ -196,7 +196,7 @@ function animate() {
             if (e.radious - 10 > 10) {
                 notes = notes + 10;
                 score.innerHTML = notes
-                localStorage.setItem('notes', notes);
+                localStorage.setItem('Scorevs5686', notes);
                 gsap.to(e, {
                     radious: e.radious - 10
                 })
@@ -235,7 +235,7 @@ function animate() {
                 if (e.radious - 10 > 10) {
                     notes = notes + 100;
                     score.innerHTML = notes
-                    localStorage.setItem('notes', notes);
+                    localStorage.setItem('Scorevs5686', notes);
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
