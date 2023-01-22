@@ -1,9 +1,17 @@
 const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
-const score=document.querySelector('.score1')
+const score = document.querySelector('.score1')
 const c = convas.getContext('2d')
-let sc=100
-score.innerHTML=sc
+
+let notes = localStorage.getItem('notes')
+if(notes==null){
+localStorage.setItem('notes', 10);
+}
+else{
+notes++
+score.innerHTML = notes
+}
+
 
 function play2() {
     var audio = new Audio(
@@ -175,7 +183,7 @@ function animate() {
         const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
-            
+
             for (let i = 0; i < e.radious * 2; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
@@ -186,8 +194,9 @@ function animate() {
             }
 
             if (e.radious - 10 > 10) {
-                sc=sc+10;
-            score.innerHTML=sc
+                notes = notes + 10;
+                score.innerHTML = notes
+                localStorage.setItem('notes', notes);
                 gsap.to(e, {
                     radious: e.radious - 10
                 })
@@ -203,7 +212,7 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious+5; i++) {
+                for (let i = 0; i < e.radious + 5; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, e.color, {
                             x: Math.random() - 0.5 * (Math.random() * 8),
@@ -222,10 +231,11 @@ function animate() {
                 }
 
                 play2()
-           
+
                 if (e.radious - 10 > 10) {
-                    sc=sc+100;
-                    score.innerHTML=sc
+                    notes = notes + 100;
+                    score.innerHTML = notes
+                    localStorage.setItem('notes', notes);
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
