@@ -140,8 +140,9 @@ const particles = []
 function spawEnemy() {
     setInterval(() => {
         const radious = Math.random() * 30 + 10;
-        const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
-        const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
+        const x = Math.random() < 0.5 ? 0 - radious : convas.width + 100
+        const y = Math.random() < 0.5 ? 0 - radious : convas.height + 100
+       
         const color1 = `hsl(${Math.random() * 360},100%,50%)`
 
         const angle = Math.atan2(
@@ -155,7 +156,7 @@ function spawEnemy() {
         Enemies.push(
             new Enemy(x, y, radious, color1, velocity)
         )
-    }, 1500)
+    }, 3000)
 }
 
 let animatedId
@@ -187,9 +188,17 @@ function animate() {
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
 
-            for (let i = 0; i < e.radious * 2; i++) {
+            for (let i = 0; i < e.radious ; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
+                        x: Math.random() - 0.5 * (Math.random() * 8),
+                        y: Math.random() - 0.5 * (Math.random() * 8)
+                    })
+                )
+            }
+            for (let i = 0; i < e.radious ; i++) {
+                particles.push(
+                    new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, player.color, {
                         x: Math.random() - 0.5 * (Math.random() * 8),
                         y: Math.random() - 0.5 * (Math.random() * 8)
                     })
@@ -215,7 +224,7 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious + 12; i++) {
+                for (let i = 0; i < e.radious + 10; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, e.color, {
                             x: Math.random() - 0.5 * (Math.random() * 8),
