@@ -2,14 +2,16 @@ const convas = document.querySelector('canvas')
 const body = document.querySelector('body')
 const score = document.querySelector('.score1')
 const c = convas.getContext('2d')
+let color = `hsl(${Math.random() * 360},100%,50%)`
+
 
 let notes = localStorage.getItem('Scorevs5686mahan')
-if(notes==null){
-localStorage.setItem('notes', 10);
+if (notes == null) {
+    localStorage.setItem('notes', 10);
 }
-else{
-notes++
-score.innerHTML = notes
+else {
+    notes++
+    score.innerHTML = notes
 }
 
 
@@ -124,7 +126,7 @@ class Particle {
 const x = convas.width / 2
 const y = convas.height / 2
 
-const player = new Player(x, y, 10, 'white')
+let player = new Player(x, y, 10, color)
 const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 
 
@@ -140,7 +142,8 @@ function spawEnemy() {
         const radious = Math.random() * 30 + 10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + radious
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + radious
-        const color = `hsl(${Math.random() * 360},100%,50%)`
+        const color1 = `hsl(${Math.random() * 360},100%,50%)`
+
         const angle = Math.atan2(
             convas.height / 2 - y,
             convas.width / 2 - x
@@ -150,7 +153,7 @@ function spawEnemy() {
             y: Math.sin(angle)
         }
         Enemies.push(
-            new Enemy(x, y, radious, color, velocity)
+            new Enemy(x, y, radious, color1, velocity)
         )
     }, 1500)
 }
@@ -220,7 +223,7 @@ function animate() {
                         })
                     )
                 }
-                for (let i = 0; i < (e.radious / 2)+7; i++) {
+                for (let i = 0; i < (e.radious / 2) + 7; i++) {
 
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, p.color, {
@@ -233,7 +236,7 @@ function animate() {
                 play2()
 
                 if (e.radious - 10 > 10) {
-                    notes = notes+10;
+                    notes = notes + 10;
                     score.innerHTML = notes
                     localStorage.setItem('Scorevs5686mahan', notes);
                     gsap.to(e, {
@@ -265,8 +268,10 @@ addEventListener('click', (event) => {
         x: Math.cos(angle) * 9,
         y: Math.sin(angle) * 9
     }
+    color = `hsl(${Math.random() * 360},100%,50%)`
+    player = new Player(x, y, 10, color)
     projectiles.push(
-        new Projectile(convas.width / 2, convas.height / 2, 5, `hsl(${Math.random() * 360},100%,50%)`, velocity)
+        new Projectile(convas.width / 2, convas.height / 2, 5, color, velocity)
     )
 
 })
