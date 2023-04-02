@@ -232,7 +232,7 @@ function animate() {
                         })
                     )
                 }
-                for (let i = 0; i < (e.radious / 2) + 7; i++) {
+                for (let i = 0; i < e.radious  * 2; i++) {
 
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, p.color, {
