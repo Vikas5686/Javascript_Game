@@ -95,7 +95,7 @@ class Enemy {
     }
 }
 const Scoring = 0;
-const friction = .99
+const friction = 1;
 class Particle {
     constructor(x, y, radious, color, velecity) {
         this.x = x;
@@ -163,7 +163,7 @@ let animatedId
 //
 function animate() {
     animatedId = requestAnimationFrame(animate)
-    c.fillStyle = 'rgba(0,0,0,0.04)'
+    c.fillStyle = 'rgba(0 ,0 ,0 ,0.1)'
     c.fillRect(0, 0, convas.width, convas.height)
     player.draw()
     defendYellow.draw()
@@ -191,16 +191,16 @@ function animate() {
             for (let i = 0; i < e.radious ; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
-                        x: Math.random() - 0.5 * (Math.random() * 8),
-                        y: Math.random() - 0.5 * (Math.random() * 8)
+                        x: Math.random() - 0.5 ,
+                        y: Math.random() - 0.5 
                     })
                 )
             }
             for (let i = 0; i < e.radious ; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, player.color, {
-                        x: Math.random() - 0.5 * (Math.random() * 8),
-                        y: Math.random() - 0.5 * (Math.random() * 8)
+                        x: Math.random() - 0.5 ,
+                        y: Math.random() - 0.5 
                     })
                 )
             }
@@ -224,11 +224,11 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious + 10; i++) {
+                for (let i = 0; i < e.radious*3; i++) {
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, e.color, {
-                            x: Math.random() - 0.5 * (Math.random() * 8),
-                            y: Math.random() - 0.5 * (Math.random() * 8)
+                            x: Math.random() - 0.5 ,
+                            y: Math.random() - 0.5 
                         })
                     )
                 }
@@ -236,8 +236,8 @@ function animate() {
 
                     particles.push(
                         new Particle(p.x, p.y, Math.random() * 2, p.color, {
-                            x: Math.random() - 0.5 * (Math.random() * 8),
-                            y: Math.random() - 0.5 * (Math.random() * 8)
+                            x: Math.random() - 0.5 ,
+                            y: Math.random() - 0.5 
                         })
                     )
                 }
