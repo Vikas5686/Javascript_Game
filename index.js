@@ -144,7 +144,7 @@ function spawEnemy() {
         const radious = Math.random() * 30 + 10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + 100
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + 100
-       
+
 
         const color1 = `hsl(${Math.random() * 360},100%,50%)`
 
@@ -229,7 +229,7 @@ function animate() {
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
                 if (flag) {
-                    if ((e.velecity.y > 0 && e.velecity.x > 0)||(e.velecity.y < 0 && e.velecity.x < 0)) {
+                    if ((e.velecity.y > 0 && e.velecity.x > 0) || (e.velecity.y < 0 && e.velecity.x < 0)) {
 
                         for (let i = 0; i < e.radious; i++) {
                             particles.push(
@@ -249,8 +249,7 @@ function animate() {
                             )
                         }
                     }
-                    else 
-                     {
+                    else {
                         for (let i = 0; i < e.radious; i++) {
                             particles.push(
                                 new Particle(p.x, p.y, Math.random() * 2, e.color, {
@@ -323,9 +322,18 @@ addEventListener('click', (event) => {
         event.clientY - convas.height / 2,
         event.clientX - convas.width / 2
     )
-    const velocity = {
-        x: Math.cos(angle) * 6,
-        y: Math.sin(angle) * 6
+    let velocity;
+    if (flag) {
+         velocity = {
+            x: Math.cos(angle) * 12,
+            y: Math.sin(angle) * 12
+        }
+    }
+    else{
+         velocity = {
+            x: Math.cos(angle) * 7,
+            y: Math.sin(angle) * 7
+        }
     }
     color = `hsl(${Math.random() * 360},100%,50%)`
     player = new Player(x, y, 10, color)
