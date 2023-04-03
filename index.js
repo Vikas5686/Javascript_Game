@@ -3,6 +3,7 @@ const body = document.querySelector('body')
 const score = document.querySelector('.score1')
 const c = convas.getContext('2d')
 let color = `hsl(${Math.random() * 360},100%,50%)`
+let flag = 1;
 
 
 let notes = localStorage.getItem('Scorevs5686mahan')
@@ -73,7 +74,7 @@ class Projectile {
         this.y = this.y + this.velecity.y
     }
 }
-
+//enimy
 class Enemy {
     constructor(x, y, radious, color, velecity) {
         this.x = x;
@@ -120,7 +121,7 @@ class Particle {
         this.velecity.y *= friction
         this.x = this.x + this.velecity.x
         this.y = this.y + this.velecity.y
-        this.alpha -= 0.0028;
+        this.alpha -= 0.0021;
     }
 }
 const x = convas.width / 2
@@ -133,16 +134,18 @@ const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 
 //
 const projectiles = []
+//enimy
 const Enemies = []
 const particles = []
 
-//
+//enimy
 function spawEnemy() {
     setInterval(() => {
         const radious = Math.random() * 30 + 10;
         const x = Math.random() < 0.5 ? 0 - radious : convas.width + 100
         const y = Math.random() < 0.5 ? 0 - radious : convas.height + 100
        
+
         const color1 = `hsl(${Math.random() * 360},100%,50%)`
 
         const angle = Math.atan2(
@@ -156,7 +159,7 @@ function spawEnemy() {
         Enemies.push(
             new Enemy(x, y, radious, color1, velocity)
         )
-    }, 3000)
+    }, 2500)
 }
 
 let animatedId
@@ -178,6 +181,7 @@ function animate() {
         x.update()
     })
 
+    //enimy
     Enemies.forEach((e, eindex) => {
         e.update()
         const dist = Math.hypot(player.x - e.x, player.y - e.y)
@@ -188,19 +192,19 @@ function animate() {
         if (dist2 - e.radious - defendYellow.radious < 1) {
             play2()
 
-            for (let i = 0; i < e.radious ; i++) {
+            for (let i = 0; i < e.radious; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
-                        x: Math.random() - 0.5 ,
-                        y: Math.random() - 0.5 
+                        x: Math.random() - 0.5,
+                        y: Math.random() - 0.5
                     })
                 )
             }
-            for (let i = 0; i < e.radious ; i++) {
+            for (let i = 0; i < e.radious; i++) {
                 particles.push(
                     new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, player.color, {
-                        x: Math.random() - 0.5 ,
-                        y: Math.random() - 0.5 
+                        x: Math.random() - 0.5,
+                        y: Math.random() - 0.5
                     })
                 )
             }
@@ -224,22 +228,68 @@ function animate() {
             const dist = Math.hypot(p.x - e.x, p.y - e.y)
             if (dist - e.radious - p.radious < 1) {
                 let color = `hsl(${Math.random() * 360},100%,50%)`
-                for (let i = 0; i < e.radious*3; i++) {
-                    particles.push(
-                        new Particle(p.x, p.y, Math.random() * 2, e.color, {
-                            x: Math.random() - 0.5 ,
-                            y: Math.random() - 0.5 
-                        })
-                    )
-                }
-                for (let i = 0; i < e.radious  * 2; i++) {
+                if (flag) {
+                    if ((e.velecity.y > 0 && e.velecity.x > 0)||(e.velecity.y < 0 && e.velecity.x < 0)) {
 
-                    particles.push(
-                        new Particle(p.x, p.y, Math.random() * 2, p.color, {
-                            x: Math.random() - 0.5 ,
-                            y: Math.random() - 0.5 
-                        })
-                    )
+                        for (let i = 0; i < e.radious; i++) {
+                            particles.push(
+                                new Particle(p.x, p.y, Math.random() * 2, e.color, {
+                                    x: Math.random() - 0.5 + (Math.random() * 1.5),
+                                    y: Math.random() - 0.5 - (Math.random() * 1.5)
+                                })
+                            )
+                        }
+                        for (let i = 0; i < e.radious; i++) {
+
+                            particles.push(
+                                new Particle(p.x, p.y, Math.random() * 2, p.color, {
+                                    x: Math.random() - 0.5 - (Math.random() * 1.5),
+                                    y: Math.random() - 0.5 + (Math.random() * 1.5)
+                                })
+                            )
+                        }
+                    }
+                    else 
+                     {
+                        for (let i = 0; i < e.radious; i++) {
+                            particles.push(
+                                new Particle(p.x, p.y, Math.random() * 2, e.color, {
+                                    x: Math.random() - 0.5 - (Math.random() * 1),
+                                    y: Math.random() - 0.5 - (Math.random() * 1)
+                                })
+                            )
+                        }
+                        for (let i = 0; i < e.radious; i++) {
+
+                            particles.push(
+                                new Particle(p.x, p.y, Math.random() * 2, p.color, {
+                                    x: Math.random() - 0.5 + (Math.random() * 1.5),
+                                    y: Math.random() - 0.5 + (Math.random() * 1.5)
+                                })
+                            )
+                        }
+                    }
+                    flag = 0;
+                }
+                else {
+                    for (let i = 0; i < e.radious; i++) {
+                        particles.push(
+                            new Particle(p.x, p.y, Math.random() * 2, e.color, {
+                                x: Math.random() - 0.5,
+                                y: Math.random() - 0.5
+                            })
+                        )
+                    }
+                    for (let i = 0; i < e.radious; i++) {
+
+                        particles.push(
+                            new Particle(p.x, p.y, Math.random() * 2, p.color, {
+                                x: Math.random() - 0.5,
+                                y: Math.random() - 0.5
+                            })
+                        )
+                    }
+                    flag = 1;
                 }
 
                 play2()
@@ -274,8 +324,8 @@ addEventListener('click', (event) => {
         event.clientX - convas.width / 2
     )
     const velocity = {
-        x: Math.cos(angle) * 9,
-        y: Math.sin(angle) * 9
+        x: Math.cos(angle) * 6,
+        y: Math.sin(angle) * 6
     }
     color = `hsl(${Math.random() * 360},100%,50%)`
     player = new Player(x, y, 10, color)
@@ -286,4 +336,5 @@ addEventListener('click', (event) => {
 })
 
 animate();
+//enimy
 spawEnemy();
