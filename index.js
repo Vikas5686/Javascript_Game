@@ -143,9 +143,9 @@ const particles = []
 
 
 //funtion defining
-const add = async () => {
-    console.log("send data from mongo")
-    const respon = await fetch('http://localhost:3000/register', {
+const add = async (NewUser) => {
+    console.log("send data to mongo")
+    const respon = await fetch('https://scsdffsdfg.onrender.com/register', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -178,7 +178,7 @@ function spawEnemy() {
 
 const get = async () => {
     console.log("get data from mongo")
-    const respon = await fetch('http://localhost:3000/getrequist', {
+    const respon = await fetch('https://scsdffsdfg.onrender.com/getrequist', {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -353,7 +353,7 @@ function animate() {
 }
 
 // event
-loginbtn.addEventListener('click', () => {
+loginbtn.addEventListener('click', async() => {
     convas.style.display = "block"
     score.style.display = "block"
     document.getElementById("box").style.display = "none";
@@ -363,8 +363,10 @@ loginbtn.addEventListener('click', () => {
         Score: notes,
     }
     console.log(NewUser)
-    add()
+   await add(NewUser)
     spawEnemy();
+    get();
+
 })
 
 addEventListener('click', (event) => {
@@ -414,9 +416,9 @@ else {
     container.style.display = "none"
     notes++
     score.innerHTML = notes
-    animate();
-    get();
     spawEnemy()
+    get()
 }
+animate();
 
 
