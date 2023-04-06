@@ -12,7 +12,7 @@ const senddata = async (NewUser) => {
     if (respon.status===404||!respon) {
         alert("user already exist")
     }
-    else if (respon.status===405) {
+    else if (respon.status===403) {
         alert("please fill the form")
     }
     else{
