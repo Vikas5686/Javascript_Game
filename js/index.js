@@ -90,7 +90,7 @@ closeNav.addEventListener('click', () => {
     requestAnimationFrame(animate)
 })
 
-let notes = localStorage.getItem('javassdfsfcriptgame')
+let notes = localStorage.getItem('javascriptgame')
 if (notes == null) {
     convas.style.display = "none"
     container.style.display = "block"
