@@ -8,7 +8,7 @@ const navbutton = document.getElementById("navbutton")
 const closeNav = document.getElementById("closeNav")
 const container = document.getElementById("container")
 const name = document.getElementById("name")
-const Gender = document.getElementById("email")
+const email = document.getElementById("email")
 const Country = document.getElementById("Country")
 const score = document.querySelector('.navbar-brand')
 const loginbtn = document.querySelector('.login')
@@ -19,16 +19,18 @@ convas.height = window.screen.availHeight
 nav.style.border = '1px solid cyan'
 
 //variable
+let baseUrl="https://scsdffsdfg.onrender.com"
+let stoploop=1;
 const x = convas.width / 2
 const y = convas.height / 2
-let callenemy=0;
+let callenemy = 0;
 let color = `hsl(${Math.random() * 360},100%,50%)`
 let html = ""
 let Navbarflag = 1;
 let flag = 1;
 const Scoring = 0;
 let friction = 1;
-// class
+let setLocatstorage;
 
 //score
 score.innerHTML = 0;
@@ -52,7 +54,9 @@ loginbtn.addEventListener('click', async () => {
     }
     console.log(NewUser)
     await senddata(NewUser)
-    get();
+    setLocatstorage=email.value
+    localStorage.setItem('email',setLocatstorage)
+    console.log(setLocatstorage)
 })
 
 addEventListener('click', (event) => {
@@ -80,28 +84,23 @@ addEventListener('click', (event) => {
     )
 })
 
-navbutton.addEventListener('click', () => {
+navbutton.addEventListener('click', async() => {
+    stoploop=0;
+    tab=document.getElementsByTagName('tr')
+   for (let i = 1; i < tab.length; i++) {
+    console.log(tab[i].Score)
+     tab[i].remove();
+   }
     console.log("nav click")
     cancelAnimationFrame(animatedId)
+    const emailLocal=localStorage.getItem("email")
+    console.log(emailLocal+" and "+notes)
+   await UpdateDataServer(emailLocal,notes)
 })
 
-let notes = localStorage.getItem('lasttrailon')
 closeNav.addEventListener('click', () => {
-    if(notes){
+    stoploop=1;
         requestAnimationFrame(animate)
-    }
 })
 
-if (notes == null) {
-    convas.style.display = "none"
-    container.style.display = "block"
-    localStorage.setItem('lasttrailon', 10);
-}
-else {
-    container.style.display = "none"
-    notes++
-    score.innerHTML = notes
-    animate();
-    spawEnemy()
-}
-get()
+localStorage_access()

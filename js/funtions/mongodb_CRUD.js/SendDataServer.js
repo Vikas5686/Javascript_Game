@@ -1,7 +1,6 @@
 const senddata = async (NewUser) => {
     console.log("send data to mongo")
-    // const respon = await fetch('http://localhost:3000/register', {
-    const respon = await fetch('https://scsdffsdfg.onrender.com/register', {
+    const respon = await fetch(`${baseUrl}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

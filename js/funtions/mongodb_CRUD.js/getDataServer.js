@@ -1,6 +1,7 @@
 const get = async () => {
-    console.log("get data from mongo")
-    const respon = await fetch('https://scsdffsdfg.onrender.com/getrequist', {
+    const tablular = document.getElementById('tablular')
+    console.log("get data from mongo " + notes)
+    const respon = await fetch(`${baseUrl}/getrequist`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -8,15 +9,25 @@ const get = async () => {
     })
     const data = await respon.json();
     data.forEach((element, i) => {
-        html += `
+        if (element.Score == notes) {
+            html += `
+            <tr class="active_table">
+            <th scope="row" class="">${i + 1}</th>
+            <td>${element.name}</td>
+            <td>IND</td>
+            <td>${element.Score}</td>
+            </tr>
+            `
+        } else {
+            html += `
         <tr>
-        <th scope="row">${i + 1}</th>
+        <th scope="row" >${i + 1}</th>
         <td>${element.name}</td>
-        <td>${element.country}</td>
-        <td>${element.score}</td>
+        <td>IND</td>
+        <td>${element.Score}</td>
         </tr>
-        `
+        `}
     })
-    const tablular = document.getElementById('tablular')
     tablular.innerHTML = html
+    html = "";
 }

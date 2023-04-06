@@ -41,13 +41,14 @@ router.get("/getrequist", async (req, res) => {
     }
 })
 
-router.get("/getUser/:id", async (req, res) => {
+router.get("/getUser", async (req, res) => {
     try {
-        console.log(req.params)
-        const { id } = req.params
-        const userindividual = await users.findById({ _id: id })
-        console.log(userindividual)
-        res.status(201).json(userindividual)
+        console.log("thisj")
+        // console.log(req.params)
+        // const { id } = req.params
+        // const userindividual = await users.findById({ _id: id })
+        // console.log(userindividual)
+        // res.status(201).json(userindividual)
     } catch (error) {
         res.status(404).json(error)
     }

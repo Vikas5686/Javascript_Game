@@ -37,3 +37,6 @@ canvas{
     margin:  auto;
     padding: 200px 0px;
 }
+.active_table{
+    border:2px solid white;
+}
