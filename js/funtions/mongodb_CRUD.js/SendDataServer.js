@@ -10,16 +10,17 @@ const senddata = async (NewUser) => {
     })
     console.log(respon)
     if (respon.status===404||!respon) {
-        alert("user already exist")
+        alert("Email already exist")
     }
     else if (respon.status===403) {
-        alert("please fill the form")
+        alert("Please fill the form")
     }
     else{
         convas.style.display = "block"
         score.style.display = "block"
         document.getElementById("box").style.display = "none";
         animate()
+        spawEnemy();
     }
     
 }

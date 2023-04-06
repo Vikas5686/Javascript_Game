@@ -21,6 +21,7 @@ nav.style.border = '1px solid cyan'
 //variable
 const x = convas.width / 2
 const y = convas.height / 2
+let callenemy=0;
 let color = `hsl(${Math.random() * 360},100%,50%)`
 let html = ""
 let Navbarflag = 1;
@@ -51,8 +52,6 @@ loginbtn.addEventListener('click', async () => {
     }
     console.log(NewUser)
     await senddata(NewUser)
-
-    spawEnemy();
     get();
 })
 
@@ -86,21 +85,23 @@ navbutton.addEventListener('click', () => {
     cancelAnimationFrame(animatedId)
 })
 
+let notes = localStorage.getItem('lasttrailon')
 closeNav.addEventListener('click', () => {
-    requestAnimationFrame(animate)
+    if(notes){
+        requestAnimationFrame(animate)
+    }
 })
 
-let notes = localStorage.getItem('javasfsdfsfsdfscriptgame')
 if (notes == null) {
     convas.style.display = "none"
     container.style.display = "block"
-    localStorage.setItem('javascriptgame', 10);
+    localStorage.setItem('lasttrailon', 10);
 }
 else {
     container.style.display = "none"
     notes++
     score.innerHTML = notes
+    animate();
     spawEnemy()
 }
 get()
-// animate();
