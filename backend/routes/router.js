@@ -1,35 +1,55 @@
-const express=require("express")
-const router=express.Router()
-const users=require("../models/userSchema")
+const express = require("express")
+const router = express.Router()
+const users = require("../models/userSchema")
 
 
 
-router.post("/register",async (req,res)=>{
-    const {name,country,Score}=req.body
-    const AddNewUser=new users({
-        name,country,Score
-    })
-    await AddNewUser.save()
-    console.log(AddNewUser)
-    console.log(req.body);
-    res.send("hello")
-})
-router.get("/getrequist",async (req,res)=>{
-   try {
-    const user=await users.find();
-    res.status(201).json(user)
-   } catch (error) {
-    res.status(404).json(error)
-   }
-})
-
-router.get("/getrequist",async (req,res)=>{
-    try {
-     const user=await users.find();
-     res.status(201).json(user)
-    } catch (error) {
-     res.status(404).json(error)
+router.post("/register", async (req, res) => {
+    const { name, country, email, Score } = req.body
+    if (!name || !country || !email) {
+        res.status(405).send("plz fill the form")
     }
- })
+    try {
+        const preuser = await users.findOne({ email: email })
+        console.log(preuser)
+        if (preuser) {
+            res.status(404).send("already exist")
+        }
+        else {
+            const AddNewUser = new users({
+                name, country, email, Score
+            })
+            await AddNewUser.save()
+            console.log(AddNewUser)
+            console.log(req.body);
+            res.send("hello")
+        }
+        
+    } catch (error) {
+        res.status(404).json(error)
+    }
+})
+
+router.get("/getrequist", async (req, res) => {
+    try {
+        const user = await users.find();
+        res.status(201).json(user)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+})
+
+router.get("/getUser/:id", async (req, res) => {
+    try {
+        console.log(req.params)
+        const { id } = req.params
+        const userindividual = await users.findById({ _id: id })
+        console.log(userindividual)
+        res.status(201).json(userindividual)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+})
+
 
 module.exports = router;
