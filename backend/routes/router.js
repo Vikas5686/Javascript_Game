@@ -6,24 +6,26 @@ const users = require("../models/userSchema")
 
 router.post("/register", async (req, res) => {
     const { name, country, email, Score } = req.body
-    if (!name || !country || !email) {
-        res.status(405).send("plz fill the form")
-    }
     try {
-        const preuser = await users.findOne({ email: email })
-        console.log(preuser)
-        if (preuser) {
-            res.status(404).send("already exist")
+        if (!name || !country || !email) {
+            res.status(403).send("plz fill the form")
+        }else{
+            const preuser = await users.findOne({ email: email })
+            console.log(preuser)
+            if (preuser) {
+                res.status(404).send("already exist")
+            }
+            else {
+                const AddNewUser = new users({
+                    name, country, email, Score
+                })
+                await AddNewUser.save()
+                console.log(AddNewUser)
+                console.log(req.body);
+                res.send("hello")
+            }
         }
-        else {
-            const AddNewUser = new users({
-                name, country, email, Score
-            })
-            await AddNewUser.save()
-            console.log(AddNewUser)
-            console.log(req.body);
-            res.send("hello")
-        }
+      
         
     } catch (error) {
         res.status(404).json(error)
