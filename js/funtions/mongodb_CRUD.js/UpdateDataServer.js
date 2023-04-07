@@ -10,5 +10,5 @@ const UpdateDataServer = async (emailValue,score) => {
     })
     const data = await respon.json();
     console.log(data)
-    await get()
+    await get(emailValue)
 }

@@ -40,3 +40,7 @@ canvas{
 .active_table{
     border:2px solid white;
 }
+.spinner-border, .spinner-grow {
+    margin-top: 15vh;
+    align-self: center;
+}

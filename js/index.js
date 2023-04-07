@@ -19,6 +19,8 @@ convas.height = window.screen.availHeight
 nav.style.border = '1px solid cyan'
 
 //variable
+// let baseUrl="https://localhost:3000"
+let clickFlag=1;
 let baseUrl="https://scsdffsdfg.onrender.com"
 let stoploop=1;
 const x = convas.width / 2
@@ -57,6 +59,7 @@ loginbtn.addEventListener('click', async () => {
     setLocatstorage=email.value
     localStorage.setItem('email',setLocatstorage)
     console.log(setLocatstorage)
+    clickFlag=1;
 })
 
 addEventListener('click', (event) => {
@@ -82,6 +85,8 @@ addEventListener('click', (event) => {
     projectiles.push(
         new Projectile(convas.width / 2, convas.height / 2, 5, color, velocity)
     )
+
+    clickFlag=1;
 })
 
 navbutton.addEventListener('click', async() => {

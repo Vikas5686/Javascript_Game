@@ -1,9 +1,8 @@
 function animate() {
 
-    var x=document.getElementById('../../WoodCrashesDistant FS022705.mp3')
-    function play2(){
-        x.play()
-    }
+    var x=new Audio('../../WoodCrashesDistant FS022705.mp3')
+   
+   
     if (stoploop) {
         animatedId = requestAnimationFrame(animate)
         c.fillStyle = 'rgba(0 ,0 ,0 ,0.1)'
@@ -131,6 +130,7 @@ function animate() {
 
                     // play2()
                     // x.play()
+                    x.play()
 
                     if (e.radious - 10 > 10) {
                         notes = notes + 10;

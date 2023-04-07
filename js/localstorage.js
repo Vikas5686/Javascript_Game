@@ -1,6 +1,9 @@
 let notes =localStorage.getItem("javascript")
+alert("For better experience use Crome browser")
+
 function localStorage_access() {
-    if (notes == null) {
+    const emailflag=localStorage.getItem("email")
+    if (notes == null && emailflag==null) {
         convas.style.display = "none"
         container.style.display = "block"
     }
