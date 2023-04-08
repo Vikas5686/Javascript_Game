@@ -15,7 +15,7 @@ const get = async (emailValue) => {
             <th scope="row" class="">${i + 1}</th>
             <td>${element.name}</td>
             <td>India</td>
-            <td>${element.Score}</td>
+            <td>${notes}</td>
             </tr>
             `
         } else {
