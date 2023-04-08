@@ -12,7 +12,7 @@ const get = async (emailValue) => {
             html += `
                 <tr class="active_table">
                 <th scope="row" class="">${i + 1}</th>
-                <td>${element.email}</td>
+                <td>${element.name}</td>
                 <td>India</td>
                 <td>${notes}</td>
                 </tr>
