@@ -30,7 +30,7 @@ function animate() {
             }
             const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
             if (dist2 - e.radious - defendYellow.radious < 1) {
-                play2()
+               
                 for (let i = 0; i < e.radious; i++) {
                     particles.push(
                         new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
@@ -49,6 +49,7 @@ function animate() {
                 }
 
                 if (e.radious - 10 > 10) {
+                    play2()
                     Scoring = Scoring + 1;
                     notes = Number(notes) + Scoring
                     score.innerHTML = notes
@@ -71,7 +72,7 @@ function animate() {
                     if (flag) {
                         if ((e.velecity.y > 0 && e.velecity.x > 0) || (e.velecity.y < 0 && e.velecity.x < 0)) {
 
-                            for (let i = 0; i < e.radious; i++) {
+                            for (let i = 0; i < e.radious+10; i++) {
                                 particles.push(
                                     new Particle(p.x, p.y, Math.random() * 2, e.color, {
                                         x: Math.random() - 0.5 + (Math.random() * 1.5),
@@ -79,7 +80,7 @@ function animate() {
                                     })
                                 )
                             }
-                            for (let i = 0; i < e.radious; i++) {
+                            for (let i = 0; i < e.radious+10; i++) {
 
                                 particles.push(
                                     new Particle(p.x, p.y, Math.random() * 2, p.color, {
@@ -90,7 +91,7 @@ function animate() {
                             }
                         }
                         else {
-                            for (let i = 0; i < e.radious; i++) {
+                            for (let i = 0; i < e.radious +10; i++) {
                                 particles.push(
                                     new Particle(p.x, p.y, Math.random() * 2, e.color, {
                                         x: Math.random() - 0.5 - (Math.random() * 1),
@@ -98,7 +99,7 @@ function animate() {
                                     })
                                 )
                             }
-                            for (let i = 0; i < e.radious; i++) {
+                            for (let i = 0; i < e.radious +10; i++) {
 
                                 particles.push(
                                     new Particle(p.x, p.y, Math.random() * 2, p.color, {
@@ -131,9 +132,10 @@ function animate() {
                         flag = 1;
                     }
 
-                    play2()
+                   
                     if (e.radious - 10 > 10) {
-                        Scoring = Scoring + 10;
+                        play2()
+                        Scoring = Scoring+2;
                         notes = Number(notes) + Scoring
                         score.innerHTML = notes
                         notes = JSON.stringify(notes)
@@ -141,11 +143,14 @@ function animate() {
                         gsap.to(e, {
                             radious: e.radious - 10
                         })
+                         
                         setTimeout(() => {
                             projectiles.splice(pindex, 1)
+                           
                         }, 0)
                     }
                     else {
+                        play2()
                         setTimeout(() => {
                             Enemies.splice(eindex, 1)
                             projectiles.splice(pindex, 1)

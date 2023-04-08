@@ -51,4 +51,4 @@ const particles = []
 
 setInterval(() => {
     clickFlag = 0;
-}, 30000);
+}, 240000);
