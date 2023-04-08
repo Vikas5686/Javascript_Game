@@ -7,7 +7,6 @@ const get = async (emailValue) => {
         }
     })
     const data = await respon.json();
- data[2].Score=770
     data.forEach((element, i) => {
         if (notes => element.Score) {
             if (element.email == emailValue) {
