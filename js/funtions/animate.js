@@ -1,9 +1,10 @@
 function animate() {
-
-    var x = new Audio('../../WoodCrashesDistant FS022705.mp3')
     function play2() {
-        x.play()
+        var audio = new Audio(
+            './WoodCrashesDistant FS022705.mp3');
+        audio.play();
     }
+
 
     if (stoploop) {
         animatedId = requestAnimationFrame(animate)
@@ -48,10 +49,11 @@ function animate() {
                 }
 
                 if (e.radious - 10 > 10) {
-                    notes = notes + 10;
-                    //score
-                    localStorage.setItem("javascript", notes);
-                    score.innerHTML = localStorage.getItem("javascript")
+                    Scoring = Scoring + 1;
+                    notes = Number(notes) + Scoring
+                    score.innerHTML = notes
+                    notes = JSON.stringify(notes)
+                    localStorage.setItem('javascript', notes)
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
@@ -130,12 +132,12 @@ function animate() {
                     }
 
                     play2()
-
                     if (e.radious - 10 > 10) {
-                        notes = notes + 10;
-                        // score
-                        localStorage.setItem("javascript", notes);
-                        score.innerHTML = localStorage.getItem("javascript")
+                        Scoring = Scoring + 10;
+                        notes = Number(notes) + Scoring
+                        score.innerHTML = notes
+                        notes = JSON.stringify(notes)
+                        localStorage.setItem('javascript', notes)
                         gsap.to(e, {
                             radious: e.radious - 10
                         })
@@ -155,4 +157,5 @@ function animate() {
         })
 
     }
+
 }

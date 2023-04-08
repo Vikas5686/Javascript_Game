@@ -1,5 +1,4 @@
 const senddata = async (NewUser) => {
-    console.log("send data to mongo")
     const respon = await fetch(`${baseUrl}/register`, {
         method: "POST",
         headers: {
@@ -7,7 +6,6 @@ const senddata = async (NewUser) => {
         },
         body: JSON.stringify(NewUser)
     })
-    console.log(respon)
     if (respon.status===404||!respon) {
         alert("Email already exist")
     }

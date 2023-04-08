@@ -1,5 +1,4 @@
 function spawEnemy() {
-
     setInterval(() => {
         if (clickFlag) {
             if (stoploop) {
@@ -29,7 +28,6 @@ function spawEnemy() {
                 )
             }
         }
+        clickFlag=0;
     }, 3000)
-
 }
-
