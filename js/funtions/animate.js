@@ -1,8 +1,10 @@
 function animate() {
 
-    var x=new Audio('../../WoodCrashesDistant FS022705.mp3')
-   
-   
+    var x = new Audio('../../WoodCrashesDistant FS022705.mp3')
+    function play2() {
+        x.play()
+    }
+
     if (stoploop) {
         animatedId = requestAnimationFrame(animate)
         c.fillStyle = 'rgba(0 ,0 ,0 ,0.1)'
@@ -27,8 +29,7 @@ function animate() {
             }
             const dist2 = Math.hypot(defendYellow.x - e.x, defendYellow.y - e.y)
             if (dist2 - e.radious - defendYellow.radious < 1) {
-                // play2()
-                // x.play()
+                play2()
                 for (let i = 0; i < e.radious; i++) {
                     particles.push(
                         new Particle(defendYellow.x, defendYellow.y, Math.random() * 2, e.color, {
@@ -49,8 +50,8 @@ function animate() {
                 if (e.radious - 10 > 10) {
                     notes = notes + 10;
                     //score
-                    score.innerHTML = notes
                     localStorage.setItem("javascript", notes);
+                    score.innerHTML = localStorage.getItem("javascript")
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
@@ -128,15 +129,13 @@ function animate() {
                         flag = 1;
                     }
 
-                    // play2()
-                    // x.play()
-                    x.play()
+                    play2()
 
                     if (e.radious - 10 > 10) {
                         notes = notes + 10;
                         // score
-                        score.innerHTML = notes
                         localStorage.setItem("javascript", notes);
+                        score.innerHTML = localStorage.getItem("javascript")
                         gsap.to(e, {
                             radious: e.radious - 10
                         })
@@ -154,6 +153,6 @@ function animate() {
                 }
             })
         })
-        
+
     }
 }

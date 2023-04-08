@@ -1,4 +1,3 @@
-console.log("every thing is fine")
 const convas = document.querySelector('canvas')
 const c = convas.getContext('2d')
 
@@ -21,6 +20,9 @@ nav.style.border = '1px solid cyan'
 //variable
 // let baseUrl="https://localhost:3000"
 let clickFlag=1;
+setInterval(() => {
+    clickFlag=0;
+}, 30000);
 let baseUrl="https://scsdffsdfg.onrender.com"
 let stoploop=1;
 const x = convas.width / 2

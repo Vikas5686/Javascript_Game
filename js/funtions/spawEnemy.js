@@ -1,5 +1,4 @@
 function spawEnemy() {
-    console.log("enemy")
 
     setInterval(() => {
         if (clickFlag) {
@@ -29,9 +28,8 @@ function spawEnemy() {
                     new Enemy(x, y, radious, color1, velocity)
                 )
             }
-            console.log(stoploop + "this is the enemy loop")
         }
-        clickFlag=0;
     }, 3000)
+
 }
 
