@@ -47,9 +47,7 @@ navbutton.addEventListener('click', async() => {
      tab[i].remove();
    }
    cancelAnimationFrame(animatedId)
-    console.log("nav click" +emailflag)
-    console.log(emailflag + " and " + notes)
-   await UpdateDataServer(emailflag,Number(notes))
+   await UpdateDataServer(emailflag)
 })
 
 closeNav.addEventListener('click', () => {
