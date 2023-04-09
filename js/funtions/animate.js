@@ -54,7 +54,7 @@ function animate() {
                     notes = Number(notes) + Scoring
                     score.innerHTML = notes
                     notes = JSON.stringify(notes)
-                    localStorage.setItem('javascript', notes)
+                    localStorage.setItem(localscore, notes)
                     gsap.to(e, {
                         radious: e.radious - 10
                     })
@@ -139,7 +139,7 @@ function animate() {
                         notes = Number(notes) + Scoring
                         score.innerHTML = notes
                         notes = JSON.stringify(notes)
-                        localStorage.setItem('javascript', notes)
+                        localStorage.setItem(localscore, notes)
                         gsap.to(e, {
                             radious: e.radious - 10
                         })

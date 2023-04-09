@@ -22,7 +22,8 @@ nav.style.border = '1px solid cyan'
 
 //variable
 // let baseUrl="https://localhost:3000"
-var notes = localStorage.getItem("javascript")
+var localscore="javascriptGame"
+var notes = localStorage.getItem(localscore)
 var Scoring = 0;
 let clickFlag = 1;
 let baseUrl = "https://scsdffsdfg.onrender.com"
