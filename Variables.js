@@ -21,8 +21,10 @@ convas.height = window.screen.availHeight
 nav.style.border = '1px solid cyan'
 
 //variable
-// let baseUrl="https://localhost:3000"
-var localscore="javascriptGameV.60"
+// let baseUrl="http://localhost:3000"
+let localId = localStorage.getItem('id')
+localId=JSON.parse(localId)
+var localscore="javascriptGameV.62"
 var notes = localStorage.getItem(localscore)
 var Scoring = 0;
 let clickFlag = 1;

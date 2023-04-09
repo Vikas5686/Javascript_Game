@@ -2,13 +2,13 @@ loginbtn.addEventListener('click', async () => {
     const NewUser = {
         name: name.value,
         country: Country.value,
-        email: email.value.slice(0,email.value.indexOf(' ')),
+        email: email.value.slice(0, email.value.indexOf(' ')),
         Score: notes,
     }
     await senddata(NewUser)
-    setLocatstorage=NewUser.email
-    localStorage.setItem('email',setLocatstorage)
-    clickFlag=1;
+    setLocatstorage = NewUser.email
+    localStorage.setItem('email', setLocatstorage)
+    clickFlag = 1;
 })
 
 addEventListener('click', (event) => {
@@ -34,25 +34,27 @@ addEventListener('click', (event) => {
     projectiles.push(
         new Projectile(convas.width / 2, convas.height / 2, 5, color, velocity)
     )
- 
-    clickFlag=1;
+
+    clickFlag = 1;
 })
 
 navbutton.addEventListener('click', () => {
-    stoploop=0;
-    tab=document.getElementsByTagName('tr')
-   for (let i = 1; i < tab.length; i++) {
-    console.log(tab[i].Score)
-     tab[i].remove();
-   }
-   cancelAnimationFrame(animatedId)
-  let emailflag2 = localStorage.getItem("email")//please do not remove this line
-    UpdateDataServer(emailflag2,notes)
+    stoploop = 0;
+    tab = document.getElementsByTagName('tr')
+    for (let i = 1; i < tab.length; i++) {
+        console.log(tab[i].Score)
+        tab[i].remove();
+    }
+    cancelAnimationFrame(animatedId)
+    let emailflag2 = localStorage.getItem('id')//please do not remove this line
+    emailflag2=JSON.parse(emailflag2)
+    UpdateDataServer(emailflag2, notes)
 })
 
 closeNav.addEventListener('click', () => {
-    stoploop=1;
-        requestAnimationFrame(animate)
+    console.log("click")
+    stoploop = 1;
+    requestAnimationFrame(animate)
 })
 
 localStorage_access()

@@ -1,4 +1,5 @@
 const get = async (emailValue) => {
+
     const respon = await fetch(`${baseUrl}/getrequist`, {
         method: "GET",
         headers: {
@@ -7,7 +8,7 @@ const get = async (emailValue) => {
     })
     const data = await respon.json();
     data.forEach((element, i) => {
-        if (element.email == emailValue) {
+        if (element._id == emailValue) {
             html += `
                 <tr class="active_table">
                 <th scope="row" class="">${i + 1}</th>
