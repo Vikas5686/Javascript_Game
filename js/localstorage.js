@@ -12,5 +12,6 @@ function localStorage_access() {
         notes++
         animate();
         spawEnemy()
+ 
     }
 }
