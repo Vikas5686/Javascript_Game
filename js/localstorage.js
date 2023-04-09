@@ -7,10 +7,8 @@ function localStorage_access() {
         notes = 0;
     }
     else {
-       
         container.style.display = "none"
         score.innerHTML = notes
-        Number(notes)
         notes++
         animate();
         spawEnemy()
