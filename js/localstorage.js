@@ -1,7 +1,7 @@
 alert("For better experience use Crome browser")
 
 function localStorage_access() {
-    if (notes == null || emailflag == null) {
+    if (notes == null || emailflag == null ||localId==null) {
         convas.style.display = "none"
         container.style.display = "block"
         notes = 0;
