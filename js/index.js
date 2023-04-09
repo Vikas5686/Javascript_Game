@@ -27,8 +27,8 @@ addEventListener('click', (event) => {
     }
     else {
         velocity = {
-            x: Math.cos(angle) * 7,
-            y: Math.sin(angle) * 7
+            x: Math.cos(angle) * 5,
+            y: Math.sin(angle) * 5
         }
     }
     player = new Player(x, y, 10, color)
