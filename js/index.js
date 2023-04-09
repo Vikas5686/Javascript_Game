@@ -9,7 +9,6 @@ loginbtn.addEventListener('click', async () => {
     await senddata(NewUser)
     setLocatstorage=NewUser.email
     localStorage.setItem('email',setLocatstorage)
-    console.log(setLocatstorage)
     clickFlag=1;
 })
 
