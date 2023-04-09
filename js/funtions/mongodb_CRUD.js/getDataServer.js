@@ -6,7 +6,6 @@ const get = async (emailValue) => {
         }
     })
     const data = await respon.json();
-    console.log(data)
     data.forEach((element, i) => {
         if (element.email == emailValue) {
             html += `

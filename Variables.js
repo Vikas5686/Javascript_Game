@@ -36,12 +36,13 @@ let Navbarflag = 1;
 let flag = 1;
 let friction = 1;
 let setLocatstorage;
+let  emailflag = localStorage.getItem("email")
 
 //score
 score.innerHTML = 0;
 
 //object
-let player = new Player(x, y, 10, color)
+var player = new Player(x, y, 10, color)
 const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 
 // array

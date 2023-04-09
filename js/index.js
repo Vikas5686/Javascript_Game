@@ -2,12 +2,12 @@ loginbtn.addEventListener('click', async () => {
     const NewUser = {
         name: name.value,
         country: Country.value,
-        email: email.value,
+        email: email.value.slice(0,email.value.indexOf(' ')),
         Score: notes,
     }
     console.log(NewUser)
     await senddata(NewUser)
-    setLocatstorage=email.value
+    setLocatstorage=NewUser.email
     localStorage.setItem('email',setLocatstorage)
     console.log(setLocatstorage)
     clickFlag=1;
@@ -47,11 +47,10 @@ navbutton.addEventListener('click', async() => {
     console.log(tab[i].Score)
      tab[i].remove();
    }
-    console.log("nav click")
-    cancelAnimationFrame(animatedId)
-    const emailLocal=localStorage.getItem("email")
-    console.log(emailLocal+" and "+notes)
-   await UpdateDataServer(emailLocal,notes)
+   cancelAnimationFrame(animatedId)
+    console.log("nav click" +emailflag)
+    console.log(emailflag + " and " + notes)
+   await UpdateDataServer(emailflag,Number(notes))
 })
 
 closeNav.addEventListener('click', () => {
