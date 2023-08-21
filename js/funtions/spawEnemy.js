@@ -1,6 +1,9 @@
 function spawEnemy() {
+    // Set_time_for_enemy
     setInterval(() => {
+        // CONDITION TO STOP THE ENEMY WHILE NO ACTIVITY DETECT
         if (clickFlag) {
+            // CONDITION TO STOP THE ENEMY WHILE CLICKING ON NAVBAR DETECT
             if (stoploop) {
                 const radious = Math.random() * 30 + 10;
                 let x;

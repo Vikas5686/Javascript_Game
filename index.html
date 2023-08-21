@@ -23,7 +23,7 @@
     />
   </head>
   <body>
-    <!-- navbar -->
+    <!--SIDE navbar -->
     <nav
       class="navbar bg-body-tertiary fixed-top p-0 px-1"
       data-bs-theme="dark"
@@ -143,16 +143,35 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    
+      <!-- -----------------------CREDIT GOES TO CHRIS COURSE CHANNEL ON YOUTUBE---------------------- -->
 
+    <!-- this generalise the things -->
+    <!-- INITIALIZE THE CLASS FOR ENEMY,PROJECTILE,PARTICLE,PLAYER -->
     <script src="./js/classes.js"></script>
+    <!-- INITIALIZE VARIABLES USE AS GLOBALLY CREATE PLAYER -->
     <script src="./Variables.js"></script>
+    <!-- UPDATE THE LOCAL SCORE TO DATABASE IF PLAYER EXIST ALEARDY AND PLAY GAME OFFLINE -->
     <script src="./js/funtions/mongodb_CRUD.js/UpdateDataServer.js"></script>
+
+    <!-- operation starts from here -->
     <script src="./js/localstorage.js"></script>
+    
+    <!-- WE SEND DATA OR RETRIVE DATA FROM THE DATABASE WHILE CLICk ON NAVBAR BUTTON -->
+    <!-- THIS FOR SET PLAYER ON DB -->
     <script src="./js/funtions/mongodb_CRUD.js/SendDataServer.js"></script>
+    <!-- THIS FOR GENERISE THE LIST ON NAVBAR SLIDE -->
     <script src="./js/funtions/mongodb_CRUD.js/getDataServer.js"></script>
+
+    <!-- USE FOR CALL THE EMEMY -->
     <script src="./js/funtions/spawEnemy.js"></script>
+
+    <!-- USE FOR animate ALL THE THINGS -->
     <script src="./js/funtions/animate.js"></script>
+
+    <!-- CLICK EVENTS CAPTURE BY INDEX.JS ALSO UPDATE THE PLAYER OBJECT -->
     <script src="./js/index.js"></script>
+
     <!-- this is the main file -->
   </body>
 </html>

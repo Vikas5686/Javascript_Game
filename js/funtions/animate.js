@@ -1,17 +1,21 @@
 function animate() {
+    // sound
     function play2() {
         var audio = new Audio(
             './WoodCrashesDistant FS022705.mp3');
         audio.play();
     }
 
-
+    // Condition_to_stop_the_animate_funtion_while_click_on_leaderboard
     if (stoploop) {
+        // general_things
         animatedId = requestAnimationFrame(animate)
         c.fillStyle = 'rgba(0 ,0 ,0 ,0.1)'
         c.fillRect(0, 0, convas.width, convas.height)
         player.draw()
         defendYellow.draw()
+
+        //particle_loop
         particles.forEach((particle, index) => {
             if (particle.alpha <= 0) {
                 particles.splice(index, 1)
@@ -19,9 +23,13 @@ function animate() {
                 particle.update()
             }
         })
+
+        // projectile_loop
         projectiles.forEach((x) => {
             x.update()
         })
+
+        // enemy_loop This is the main code WITH THIS WE ONLY UPDATE THE LOCALSTORAGE CODE
         Enemies.forEach((e, eindex) => {
             e.update()
             const dist = Math.hypot(player.x - e.x, player.y - e.y)

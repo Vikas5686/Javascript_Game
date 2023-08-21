@@ -45,6 +45,7 @@ let  emailflag = localStorage.getItem("email")
 score.innerHTML = 0;
 
 //object
+// CREATING PLAYER OBJECT
 var player = new Player(x, y, 10, color)
 const defendYellow = new DefendYellow(x, y, 12, 'transparent')
 

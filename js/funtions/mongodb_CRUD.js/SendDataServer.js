@@ -19,6 +19,7 @@ const senddata = async (NewUser) => {
         convas.style.display = "block"
         score.style.display = "block"
         document.getElementById("box").style.display = "none";
+        // AFTER THE SET THE USER ON DATABASE CALL THIS FUNTIONS
         animate()
         spawEnemy();
     }
