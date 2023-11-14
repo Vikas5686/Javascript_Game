@@ -36,9 +36,9 @@ canvas{
 }
 .box{
     height: 50vh;
-    width: 50%;
+    width: 70%;
     margin:  auto;
-    padding: 200px 0px;
+    padding: 100px 0px;
 }
 .active_table{
     border:2px solid white;
